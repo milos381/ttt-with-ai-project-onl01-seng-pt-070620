@@ -34,7 +34,28 @@ class Game
     board.cells[won?[0]] if won?
   end
   def turn
-    board.update(input, current_player) if board.valid_move?(input)
+#     If we can make a valid move update the board
+#     OTHERWISE, in every other instance where there isn't a valid move run turn again
+    input = current_player.move(input).to_i
+
+    if board.valid_move?(input)
+      board.update(input, current_player)
+    else
+      puts "That is an invalid move"
+      turn
+    end
+  end
+  def play
+    board.reset!
+    board.display
+    until over?
+      turn
+    end
+    if draw?
+      puts "Cat's game!"
+    elsif won?
+      puts "Congratulations #{winner}!"
+    end
   end
 
 end
