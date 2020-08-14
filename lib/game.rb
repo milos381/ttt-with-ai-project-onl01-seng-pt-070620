@@ -19,5 +19,22 @@ class Game
   def current_player
     board.turn_count.even?  ? player_1 : player_2
   end
+  def won?
+    WIN_COMBINATIONS.find do |combo|
+      board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[0]] != " "
+    end
+  end
+  def draw?
+    board.full? && !won?
+  end
+  def over?
+    won? || draw?
+  end
+  def winner
+    board.cells[won?[0]] if won?
+  end
+  def turn
+    board.update(input, current_player) if board.valid_move?(input)
+  end
 
 end
