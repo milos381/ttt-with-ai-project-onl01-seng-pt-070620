@@ -46,7 +46,6 @@ class Game
     end
   end
   def play
-    board.display
     until over?
       turn
     end
@@ -58,3 +57,4 @@ class Game
   end
 
 end
+
