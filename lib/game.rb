@@ -50,7 +50,7 @@ class Game
       turn
     end
     if draw?
-      puts "Cat's game!"
+      puts "Cat's Game!"
     elsif won?
       puts "Congratulations #{winner}!"
     end
